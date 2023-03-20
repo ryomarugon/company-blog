@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <h1 class="text-center pt-5">投稿一覧</h1>
-<div class="container d-flex">
+<div class="container">
     <div class="row">
         <?php foreach($posts as $post): ?>
         <div class="col-4">
@@ -19,7 +19,7 @@
                         <i class="fas fa-users text-info"></i> 4 portions
                     </small> -->
                     <p class="card-text"><?php echo $post->body;?></p>
-                    <a href="{{ route('posts.show', $post->id) }}" class="btn btn-info">Read More</a>
+                    <a href="{{ route('posts.show', $post->id) }}" class="btn btn-info">続きを読む</a>
                 </div>
                 <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
                     <div class="views"><?php echo $post->created_at;?>
