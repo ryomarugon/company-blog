@@ -54,6 +54,7 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $post = Post::find($id);
+        $post->tags->name=$request->tag;
         $post->fill($request->all())->save();
         return redirect()->route('posts.index');
     }
