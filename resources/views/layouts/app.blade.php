@@ -83,7 +83,34 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div class="container">
+                <div class="row">
+                    <!-- メインコンテンツ -->
+                    <div class="col-9">@yield('content')</div>
+                    <!-- サイドバー -->
+                    <div class="col-3">
+                        <div class="sidebar_fixed py-5">
+                            <div class="search">
+                                <!-- 検索機能 -->
+                                <h4 class="text-center py-4">ーーー 記事を検索 ーーー</h4>
+                               
+                            </div>
+                            <div class="featured py-5">
+                                <!-- 最新記事or注目記事のピックアップ -->
+                                <h4 class="text-center py-4">ーーー 最新記事 ーーー</h4>
+                                @foreach($new_posts as $new_post)
+                                <p>{{ $new_post->title }}</p>
+                                <hr>
+                                @endforeach
+                            </div>
+                            <div class="archive py-5">
+                                <!-- 月別アーカイブ -->
+                                <h4 class="text-center py-4">ーーー アーカイブ ーーー</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 </body>
