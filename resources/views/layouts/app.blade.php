@@ -93,7 +93,8 @@
                             <div class="search">
                                 <!-- 検索機能 -->
                                 <h4 class="text-center py-4">ーーー 記事を検索 ーーー</h4>
-                               
+                                <input type="text" name="search" placeholder="記事を検索">
+                                <button type="submit" class="btn btn-primary">検索</button>
                             </div>
                             <div class="featured py-5">
                                 <!-- 最新記事or注目記事のピックアップ -->
