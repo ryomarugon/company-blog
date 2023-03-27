@@ -13,15 +13,18 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::orderByDesc('created_at', 'desc')->paginate(6);
+        $new_posts = Post::orderBy('id','desc')->take(5)->get();
         $tags = Tag::all();
         return view('posts.index', [
             'posts' => $posts,
-            'tags' => $tags
+            'tags' => $tags,
+            'new_posts' => $new_posts
         ]);
     }
     public function create()
     {
-        return view('posts.create');
+        $new_posts = Post::orderBy('id','desc')->take(5)->get();
+        return view('posts.create',['new_posts' => $new_posts]);
     }
     public function store(Request $request)
     {
@@ -35,8 +38,10 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
+        $new_posts = Post::orderBy('id','desc')->take(5)->get();
         return view('posts.show', [
-            'post' => $post
+            'post' => $post,
+            'new_posts' => $new_posts
         ]);
 
     }
@@ -44,9 +49,11 @@ class PostController extends Controller
     {
         $tags = Tag::all();
         $post = Post::find($id);
+        $new_posts = Post::orderBy('id','desc')->take(5)->get();
         return view('posts.edit', [
             'tags' => $tags,
-            'post' => $post
+            'post' => $post,
+            'new_posts' => $new_posts
         ]);
     }
 
@@ -54,6 +61,7 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $post = Post::find($id);
+        $post->tags->name = $request->tag;
         $post->fill($request->all())->save();
         return redirect()->route('posts.index');
     }
